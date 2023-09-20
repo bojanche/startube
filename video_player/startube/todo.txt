@@ -1,0 +1,2 @@
+users: free, viewer, creator
+video: assets, creator,
