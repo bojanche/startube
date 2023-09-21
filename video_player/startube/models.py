@@ -13,3 +13,9 @@ class Asset(models.Model):
     asset_dimension_y = models.IntegerField(null=True)
     asset_duration = models.FloatField(null=True)
     asset_codec = models.CharField(max_length=20, blank=True)
+
+
+
+class Video(models.Model):
+    pass
+    # asset = models.Fo
