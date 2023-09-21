@@ -1,2 +1,3 @@
 users: free, viewer, creator
-video: assets, creator,
+video: assets, creator, public/private,
+asset: name, type, upload date, original, default, owner, dimensions_x, dimensions_y, duration, codec
