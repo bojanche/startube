@@ -3,6 +3,13 @@ from datetime import datetime
 
 
 # Create your models here.
+class Video(models.Model):
+    video_name = models.CharField(max_length=500)
+    # creator
+    video_public = models.BooleanField(default=True)
+    video_number_of_views = models.IntegerField(blank=True)
+
+
 class Asset(models.Model):
     asset_name = models.CharField(max_length=500)
     asset_type = models.CharField(max_length=20, blank=True)
@@ -13,9 +20,7 @@ class Asset(models.Model):
     asset_dimension_y = models.IntegerField(null=True)
     asset_duration = models.FloatField(null=True)
     asset_codec = models.CharField(max_length=20, blank=True)
+    asset_video = models.ForeignKey(Video, on_delete=models.CASCADE, blank=True)
 
 
 
-class Video(models.Model):
-    pass
-    # asset = models.Fo

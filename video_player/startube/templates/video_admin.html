@@ -2,7 +2,30 @@
 {% block body_block %}
 {% load static %}
 <div class="container pt-5">
-<button type="button" class="btn btn-primary">Add video</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createvideo">Kreiraj video</button>
+<div class="pt-5">Nema nijedan video. Možda da dodaš neki?</div>
 
+
+<!--modal za dodavanje videa-->
+    <div class="modal fade" id="createvideo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pretragaModalLabel">Dodaj video</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zatvori"></button>
+                </div>
+                <div class="modal-body" id="addition">
+<!--                    ovde dodajem-->
+
+                </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                    <input type="submit" class="btn btn-primary" value="Dodaj">
+                  </div>
+
+            </div>
+        </div>
+    </div>
+<!--modal za dodavanje videa-->
 </div>
 {% endblock  %}
