@@ -13,8 +13,9 @@ class Video(models.Model):
 class Asset(models.Model):
     asset_name = models.CharField(max_length=500)
     asset_type = models.CharField(max_length=20, blank=True)
-    asset_upload_timestamp = models.DateTimeField(auto_now=True)
+    asset_upload_timestamp = models.DateTimeField(auto_now_add=True)
     asset_original = models.BooleanField(default=True)
+    asset_file = models.FileField(upload_to='%Y%m%d%H%M%S%f')
     # asset_owner = models
     asset_dimension_x = models.IntegerField(null=True)
     asset_dimension_y = models.IntegerField(null=True)

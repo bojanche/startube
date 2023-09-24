@@ -3,8 +3,11 @@
 {% load static %}
 <div class="container pt-5">
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createvideo">Kreiraj video</button>
+    {% for video in video_list %}
+    {{ video }}<br>
+    {% empty %}
 <div class="pt-5">Nema nijedan video. Možda da dodaš neki?</div>
-
+    {% endfor %}
 
 <!--modal za dodavanje videa-->
     <div class="modal fade" id="createvideo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
