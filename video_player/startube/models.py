@@ -8,6 +8,8 @@ class Video(models.Model):
     # creator
     video_public = models.BooleanField(default=True)
     video_number_of_views = models.IntegerField(blank=True)
+    video_poster_location = models.CharField(max_length=500)
+    video_active = models.BooleanField(default=False)
 
 
 class Asset(models.Model):
