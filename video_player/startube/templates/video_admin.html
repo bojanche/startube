@@ -3,11 +3,30 @@
 {% load static %}
 <div class="container pt-5">
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createvideo">Kreiraj video</button>
-    {% for video in video_list %}
-    {{ video.video_name }}<br>
+
+    <table class="table table-hover pt-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Video name</th>
+      <th scope="col">Active</th>
+      <th scope="col">Public</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for video in video_list %}
+   <tr>
+      <th scope="row">1</th>
+      <td>{{ video.video_name }}</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
     {% empty %}
 <div class="pt-5">Nema nijedan video. Možda da dodaš neki?</div>
     {% endfor %}
+   </tbody>
+</table>
+
 
 <!--modal za dodavanje videa-->
     <div class="modal fade" id="createvideo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
