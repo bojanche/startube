@@ -1,6 +1,8 @@
 from django import forms
+from .models import Asset, Video
 
 
-class UploadFileForm(forms.Form):
-    title = forms.CharField(max_length=500)
-    file = forms.FileField()
+class CreateVideoForm(forms.ModelForm):
+    class Meta:
+        model = Video
+        fields = ('video_name', 'video_public', 'video_active')

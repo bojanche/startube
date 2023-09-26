@@ -4,7 +4,7 @@
 <div class="container pt-5">
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createvideo">Kreiraj video</button>
     {% for video in video_list %}
-    {{ video }}<br>
+    {{ video.video_name }}<br>
     {% empty %}
 <div class="pt-5">Nema nijedan video. Možda da dodaš neki?</div>
     {% endfor %}
@@ -18,12 +18,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zatvori"></button>
                 </div>
                 <div class="modal-body" id="addition">
+                    <form method="get">
 <!--                    ovde dodajem-->
                     {{ form.as_p }}
                 </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
                     <input type="submit" class="btn btn-primary" value="Dodaj">
+                      </form>
                   </div>
 
             </div>
