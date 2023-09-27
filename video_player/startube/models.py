@@ -10,7 +10,7 @@ class Video(models.Model):
     video_number_of_views = models.IntegerField(blank=True, default=0)
     video_poster_location = models.CharField(max_length=500)
     video_active = models.BooleanField(default=False)
-    video_container_location = models.CharField(max_length=30)
+    video_container_location = models.CharField(max_length=30, blank=True)
 
 
 class Asset(models.Model):

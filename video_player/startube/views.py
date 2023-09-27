@@ -8,10 +8,12 @@ from video_player.settings import MEDIA_DIR
 
 
 def create_video_dir(name):
-    os.mkdir(MEDIA_DIR, name)
+    path = os.getcwd()+'\\'+MEDIA_DIR+'\\'+name
+    os.mkdir(path)
 
 
 def home(request):
+    print(os.getcwd())
     video_list = Video.objects.all()
     return render(request, 'home.html', {'title': 'Home', 'video_list': video_list})
 
