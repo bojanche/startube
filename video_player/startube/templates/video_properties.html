@@ -2,35 +2,36 @@
 {% block body_block %}
 {% load static %}
 <div class="container pt-5">
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createvideo">Kreiraj video</button>
+<h1>Svojstva za: <span style="color: red; font-style: italic;">{{ video.video_name }}</span></h1>
+
+<hr>
+
+<div class="container pt-5">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createvideo">Dodaj video fajl</button>
 
 <table class="table table-hover pt-5">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Ime videa</th>
-      <th scope="col">Aktivan</th>
-      <th scope="col">Javan</th>
-      <th scope="col">Uređivanje</th>
+      <th scope="col">Naziv fajla</th>
+      <th scope="col">Edit</th>
     </tr>
   </thead>
   <tbody>
-  {% for video in video_list %}
+  {% for asset in assets %}
    <tr>
       <th scope="row">1</th>
-      <td>{{ video.video_name }}</td>
-      <td>{{ video.video_active }}</td>
-      <td>{{ video.video_public }}</td>
-      <td><a href="{% url 'startube:video_properties' video.id %}"><img src="{% static 'images/pencil-square.svg' %}" /></a></td>
+      <td>{{ asset.asset_name }}</td>
+      <td><a href="#"><img src="{% static 'images/pencil-square.svg' %}" /></a></td>
     </tr>
     {% empty %}
-<div class="pt-5">Nema nijedan video. Možda da dodaš neki?</div>
+<div class="pt-5">Nema nijedan video fajl. Možda da dodaš neki?</div>
     {% endfor %}
    </tbody>
 </table>
 
 
-<!--modal za dodavanje videa-->
+<!--modal za dodavanje asseta-->
     <div class="modal fade" id="createvideo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -38,21 +39,23 @@
                     <h5 class="modal-title" id="pretragaModalLabel">Dodaj video</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zatvori"></button>
                 </div>
+                <form method="post" enctype="multipart/form-data">
                 <div class="modal-body" id="addition">
-                    <form method="get">
+
+                        {% csrf_token %}
 <!--                    ovde dodajem-->
                     {{ form.as_p }}
-                </div>
+                    </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
                     <input type="submit" class="btn btn-primary" value="Dodaj">
-                      </form>
-                  </div>
 
+                  </div>
+                </form>
             </div>
         </div>
     </div>
-<!--modal za dodavanje videa-->
+<!--modal za dodavanje asseta-->
+
 </div>
-It is {% now "YmdHiu" %}
 {% endblock  %}

@@ -6,10 +6,11 @@ from datetime import datetime
 class Video(models.Model):
     video_name = models.CharField(max_length=500)
     # creator
-    video_public = models.BooleanField(default=True)
+    video_public = models.BooleanField(default=False)
     video_number_of_views = models.IntegerField(blank=True, default=0)
     video_poster_location = models.CharField(max_length=500)
     video_active = models.BooleanField(default=False)
+    video_container_location = models.CharField(max_length=30)
 
 
 class Asset(models.Model):
