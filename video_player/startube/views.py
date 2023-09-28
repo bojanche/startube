@@ -1,19 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Video, Asset
 from .forms import CreateVideoForm, AddAssetFileForm
-import os
-from video_player.settings import MEDIA_DIR
-
+from .utilities import *
 # Create your views here.
 
 
-def create_video_dir(name):
-    path = os.getcwd()+'\\'+MEDIA_DIR+'\\'+name
-    os.mkdir(path)
-
-
 def home(request):
-    print(os.getcwd())
     video_list = Video.objects.all()
     return render(request, 'home.html', {'title': 'Home', 'video_list': video_list})
 
@@ -23,7 +15,6 @@ def video_admin(request):
     if request.method == 'GET':
         form = CreateVideoForm(request.GET)
         if form.is_valid():
-            # datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
             create_video_dir(str(request.GET.get('video_container_location')))
             form.save()
             return redirect('startube:video_admin')
