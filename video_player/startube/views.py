@@ -24,8 +24,10 @@ def video_admin(request):
 
 
 def video_properties(request, id):
+    global upload_asset_file
     video = Video.objects.get(id=id)
     assets = Asset.objects.filter(asset_video=id)
+    upload_asset_file(video.video_container_location)
     if request.method == 'POST':
         form = AddAssetFileForm(request.POST, request.FILES)
         if form.is_valid():
