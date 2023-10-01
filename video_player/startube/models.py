@@ -1,12 +1,9 @@
 from django.db import models
-from datetime import datetime
-from .utilities import upload_asset_file
-import os
-import video_player.settings as VPS
+# from datetime import datetime
 
 
-def upload_asset_file(dir):
-    return VPS.MEDIA_ROOT / dir / '%Y%m%d%H%M%S%f'
+def dynamic_upload_to(instance):
+    return f'{instance.asset_video.video_container_location}'
 
 
 # Create your models here.
@@ -21,19 +18,19 @@ class Video(models.Model):
 
 
 class Asset(models.Model):
-
-    print('Iz modela: ', upload_asset_file)
     asset_name = models.CharField(max_length=500)
     asset_type = models.CharField(max_length=20, blank=True)
     asset_upload_timestamp = models.DateTimeField(auto_now_add=True)
     asset_original = models.BooleanField(default=True)
-    asset_file = models.FileField(upload_to=upload_asset_file)
+    asset_video = models.ForeignKey(Video, on_delete=models.CASCADE, blank=True)
+    asset_file = models.FileField(upload_to=dynamic_upload_to)
     # asset_owner = models
     asset_dimension_x = models.IntegerField(null=True)
     asset_dimension_y = models.IntegerField(null=True)
     asset_duration = models.FloatField(null=True)
     asset_codec = models.CharField(max_length=20, blank=True)
-    asset_video = models.ForeignKey(Video, on_delete=models.CASCADE, blank=True)
 
+    def __str__(self):
+        return self.asset_video.video_container_location
 
 

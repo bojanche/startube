@@ -16,4 +16,6 @@ class CreateVideoForm(forms.ModelForm):
 class AddAssetFileForm(forms.ModelForm):
     class Meta:
         model = Asset
-        fields = ('asset_file', 'asset_video')
+        fields = ['asset_file', 'asset_video']
+        widgets = {'asset_video': forms.HiddenInput(attrs={'id': 'video_container_link', 'name': 'linker',
+                                                           'value': ''})}

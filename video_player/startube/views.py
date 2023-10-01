@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Video, Asset
 from .forms import CreateVideoForm, AddAssetFileForm
 from .utilities import *
+from django.core.files.storage import default_storage
 # Create your views here.
 
 
@@ -24,14 +25,21 @@ def video_admin(request):
 
 
 def video_properties(request, id):
-    global upload_asset_file
     video = Video.objects.get(id=id)
     assets = Asset.objects.filter(asset_video=id)
-    upload_asset_file(video.video_container_location)
     if request.method == 'POST':
+        # original_post = request.POST.copy()
+        # original_post['asset_video'] = video.id
+        # request.POST = original_post
+        # file = request.FILES['asset_file']
+        # file_name = default_storage.save(file.name, file)
+        # print(file, file_name)
         form = AddAssetFileForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            assets_instance = form.save(commit=False)
+            assets_instance.asset_video.upload_to = '20231001171042495923'
+            print(assets_instance)
+            assets_instance.save()
             return redirect('startube:video_properties', id=id)
     else:
         form = AddAssetFileForm()
