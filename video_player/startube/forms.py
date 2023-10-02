@@ -6,16 +6,9 @@ import datetime
 class CreateVideoForm(forms.ModelForm):
     class Meta:
         model = Video
-        fields = ('video_name', 'video_container_location')
-        widgets = {'video_name': forms.TextInput(attrs={'id': 'video_name', 'class': 'form-control'}),
-                   'video_container_location': forms.HiddenInput(attrs={'id': 'folder', 'name': 'video_location',
-                                                                        'value': datetime.datetime.now().strftime('%Y%m%d%H%M%S%f'),
-                                                                        'placeholder': ''})}
+        fields = ('video_name', )
+        widgets = {'video_name': forms.TextInput(attrs={'id': 'video_name', 'class': 'form-control'}),}
 
 
-class AddAssetFileForm(forms.ModelForm):
-    class Meta:
-        model = Asset
-        fields = ['asset_file', 'asset_video']
-        widgets = {'asset_video': forms.HiddenInput(attrs={'id': 'video_container_link', 'name': 'linker',
-                                                           'value': ''})}
+class AddAssetFileForm(forms.Form):
+    file = forms.FileField()
