@@ -13,16 +13,20 @@
 <table class="table table-hover pt-5">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Naziv fajla</th>
+      <th scope="col">Kodek</th>
+      <th scope="col">Dimenzije</th>
+      <th scope="col">Original</th>
       <th scope="col">Edit</th>
     </tr>
   </thead>
   <tbody>
   {% for asset in assets %}
    <tr>
-      <th scope="row">1</th>
       <td>{{ asset.asset_name }}</td>
+      <td>{{ asset.codec }}</td>
+      <td>{{ asset.asset_dimension_x }}x{{ asset.asset_dimension_y }}</td>
+      <td>{{ asset.asset_original }}</td>
       <td><a href="#"><img src="{% static 'images/pencil-square.svg' %}" /></a></td>
     </tr>
     {% empty %}
