@@ -41,3 +41,8 @@ def video_properties(request, id):
         form = AddAssetFileForm()
     return render(request, 'video_properties.html', {'title': 'Uređivanje', 'video': video, 'assets': assets, 'form': form})
 
+
+def remove_asset(request, id):
+    if request.method == 'GET':
+        Asset.objects.get(id=id)
+    return redirect('startube:video_properties', id=id)

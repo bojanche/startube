@@ -18,6 +18,7 @@
       <th scope="col">Dimenzije</th>
       <th scope="col">Original</th>
       <th scope="col">Edit</th>
+      <th scope="col">Obriši</th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +29,7 @@
       <td>{{ asset.asset_dimension_x }}x{{ asset.asset_dimension_y }}</td>
       <td>{{ asset.asset_original }}</td>
       <td><a href="#"><img src="{% static 'images/pencil-square.svg' %}" /></a></td>
+      <td><a href="{% url 'startube:remove_asset' asset.id %}"><img src="{% static 'images/trash.svg' %}" /></a></td>
     </tr>
     {% empty %}
 <div class="pt-5">Nema nijedan video fajl. Možda da dodaš neki?</div>
