@@ -9,5 +9,5 @@
 from video_player.startube.utilities import probe_video
 
 
-fajl = probe_video('waiting.mp4')
-print(fajl[3])
+fajl = probe_video('1080.mp4')
+print(fajl)

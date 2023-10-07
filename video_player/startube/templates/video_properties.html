@@ -15,6 +15,7 @@
     <tr>
       <th scope="col">Naziv fajla</th>
       <th scope="col">Kodek</th>
+      <th scope="col">Trajanje (s)</th>
       <th scope="col">Dimenzije</th>
       <th scope="col">Original</th>
       <th scope="col">Edit</th>
@@ -25,11 +26,12 @@
   {% for asset in assets %}
    <tr>
       <td>{{ asset.asset_name }}</td>
-      <td>{{ asset.codec }}</td>
+      <td>{{ asset.asset_codec }}</td>
+      <td>{{ asset.asset_duration|floatformat:2}}</td>
       <td>{{ asset.asset_dimension_x }}x{{ asset.asset_dimension_y }}</td>
       <td>{{ asset.asset_original }}</td>
       <td><a href="#"><img src="{% static 'images/pencil-square.svg' %}" /></a></td>
-      <td><a href="{% url 'startube:remove_asset' asset.id %}"><img src="{% static 'images/trash.svg' %}" /></a></td>
+      <td><a href="{% url 'startube:remove_asset' asset.id %}" onClick="return confirm('Ovim brises i video fajl. Si siguran?')"><img src="{% static 'images/trash.svg' %}" /></a></td>
     </tr>
     {% empty %}
 <div class="pt-5">Nema nijedan video fajl. Možda da dodaš neki?</div>
@@ -63,6 +65,27 @@
         </div>
     </div>
 <!--modal za dodavanje asseta-->
-
+<!-- modal za brisanje asseta -->
+<div class="modal fade" id="removeAssetModal" tabindex="-1" role="dialog" aria-labelledby="removeAssetModal1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--modal za brisanje asseta    -->
+</div>
 </div>
 {% endblock  %}

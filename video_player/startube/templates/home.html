@@ -4,7 +4,6 @@
 <div class="container pt-5">
 <div class="row row-cols-1 row-cols-md-3 g-4">
   {% for video in video_list %}
-    {% if video.active %}
    <div class="col">
     <div class="card h-100">
       <img src="" class="card-img-top" alt="...">
@@ -14,11 +13,8 @@
       </div>
     </div>
   </div>
-    {% else %}
-<div class="pt-5">Nema nijedan aktivan video. Možda da dodaš neki?</div>
-    {% endif %}
     {% empty %}
-<div class="pt-5">Nema nijedan video. Možda da dodaš neki?</div>
+<div class="pt-5">Nema nijedan (aktivan) video. Možda da dodaš neki?</div>
     {% endfor %}
 
 

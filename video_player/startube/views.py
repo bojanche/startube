@@ -8,7 +8,7 @@ from video_player.settings import MEDIA_ROOT
 
 
 def home(request):
-    video_list = Video.objects.all()
+    video_list = Video.objects.filter(video_active=True)
     return render(request, 'home.html', {'title': 'Home', 'video_list': video_list})
 
 
@@ -34,7 +34,10 @@ def video_properties(request, id):
             uploaded_file = request.FILES['file']
             fs = FileSystemStorage(location=loc)
             filename = fs.save(uploaded_file.name, uploaded_file)
-            asset = Asset(asset_name=uploaded_file.name, asset_video=video)
+            probe_results = probe_video(loc / filename)
+            asset = Asset(asset_name=uploaded_file.name, asset_video=video, asset_codec=probe_results[0],
+                          asset_duration=probe_results[1], asset_dimension_y=probe_results[2],
+                          asset_dimension_x=probe_results[3])
             asset.save()
             return redirect('startube:video_properties', id=id)
     else:
@@ -44,5 +47,10 @@ def video_properties(request, id):
 
 def remove_asset(request, id):
     if request.method == 'GET':
-        Asset.objects.get(id=id)
-    return redirect('startube:video_properties', id=id)
+        what_to_delete = Asset.objects.get(id=id)
+        parent_video_id = what_to_delete.asset_video.id
+        parent_video = Video.objects.get(id=parent_video_id)
+        file_to_delete = MEDIA_ROOT / parent_video.video_name / what_to_delete.asset_name
+        what_to_delete.delete()
+        remove_asset_file(file_to_delete)
+    return redirect('startube:video_properties', id=parent_video_id)

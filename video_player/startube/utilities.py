@@ -15,3 +15,15 @@ def probe_video(in_file):
     height = metadata.streams[0].height
     width = metadata.streams[0].width
     return [codec, duration, height, width]
+
+
+def remove_asset_file(in_file):
+    try:
+        if os.path.isfile(in_file):
+            os.remove(in_file)
+    except:
+        print('File not found...')
+
+
+def create_poster(in_file):
+    pass
