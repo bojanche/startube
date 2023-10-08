@@ -2,9 +2,13 @@
 {% block body_block %}
 {% load static %}
 <div class="container pt-5">
-<h1>Svojstva za: <span style="color: red; font-style: italic;">{{ video.video_name }}</span></h1>
 
-<hr>
+
+
+<div class="input-group input-group-lg">
+  <span class="input-group-text" id="inputGroup-sizing-lg">Svojstva za:</span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="{{ video.video_name }}" id="ime">
+</div>
 
 <div class="container pt-5">
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createvideo">Dodaj video fajl</button>
@@ -88,4 +92,25 @@
 <!--modal za brisanje asseta    -->
 </div>
 </div>
+
+
+<script>
+// odjava
+   $("#ime").on("keydown", function(e){
+        if(e.which == 13){
+            let cell = $(this).closest('input').attr('value');
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", window.location.href+"videoproperties/"+cell;
+            xhr.send();
+            }
+        });
+   $("#ime").on("blur", function(e){
+            let cell = $(this).closest('input').attr('id')
+            const xhr = new XMLHttpRequest()
+            xhr.open("GET", window.location.href+"odjava_uredi/"+cell+"/?unos="+$(this).val());
+            xhr.send();
+
+        });
+</script>
 {% endblock  %}
