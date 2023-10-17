@@ -21,8 +21,8 @@ def remove_asset_file(in_file):
     try:
         if os.path.isfile(in_file):
             os.remove(in_file)
-    except:
-        print('File not found...')
+    except OSError as e:
+        print('File not found...', e)
 
 
 def create_poster(in_file):

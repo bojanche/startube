@@ -24,9 +24,12 @@ def video_admin(request):
     return render(request, 'video_admin.html', {'title': 'Video Admin', 'video_list': video_list, 'form': form})
 
 
-def video_properties(request, id):
+def video_properties(request, id, id1=None):
     video = Video.objects.get(id=id)
     assets = Asset.objects.filter(asset_video=id)
+    if request.method == 'GET' and id1 is not None:
+        print(id1)
+
     if request.method == 'POST':
         form = AddAssetFileForm(request.POST, request.FILES)
         if form.is_valid():

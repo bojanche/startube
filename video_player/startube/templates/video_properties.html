@@ -7,7 +7,7 @@
 
 <div class="input-group input-group-lg">
   <span class="input-group-text" id="inputGroup-sizing-lg">Svojstva za:</span>
-  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="{{ video.video_name }}" id="ime">
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="{{ video.video_name }}" id="ime">
 </div>
 
 <div class="container pt-5">
@@ -99,16 +99,17 @@
    $("#ime").on("keydown", function(e){
         if(e.which == 13){
             let cell = $(this).closest('input').attr('value');
-
+            console.log(cell);
             const xhr = new XMLHttpRequest();
-            xhr.open("GET", window.location.href+"videoproperties/"+cell;
+            xhr.open("GET", window.location.href+cell);
             xhr.send();
             }
         });
    $("#ime").on("blur", function(e){
-            let cell = $(this).closest('input').attr('id')
+            let cell = $(this).closest('input').attr('value')
             const xhr = new XMLHttpRequest()
-            xhr.open("GET", window.location.href+"odjava_uredi/"+cell+"/?unos="+$(this).val());
+            console.log(cell);
+            xhr.open("GET", window.location.href+cell);
             xhr.send();
 
         });
